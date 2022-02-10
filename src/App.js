@@ -1,12 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import uuid from "react-uuid";
 import "./App.css";
 import Main from "./Main";
 import Sidebar from "./Sidebar";
 
 function App() {
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState(JSON.parse(localStorage.notes) || []);
+  //Browser throw error if there is no item available in localStorage, SO THAT ->
+  // Display empty array which display nothing
+
   const [activeNote, setActiveNote] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem("notes", JSON.stringify(notes));
+    //notes as key and value into JSON that is in string
+  }, [notes]);
+
+  //useEffect hook has dependency which helps to update as the sideEffect of node changing
 
   const addNoteOnClick = () => {
     const newNote = {
