@@ -1,6 +1,6 @@
 import React from "react";
 
-function Main() {
+function Main(activeNote) {
   return (
     <div className="app-main">
       <div className="app-main-note-edit">
@@ -8,11 +8,13 @@ function Main() {
         <textarea id="body" placeholder="Write your notes here " />
       </div>
       <div className="app-main-notes-preview">
-        <h1 className="preview-title"> TITLE </h1>
-        <div className="markdown-preview">note preview</div>
+        <h1 className="preview-title"> {activeNote.title} </h1>
+        <div className="markdown-preview">{activeNote.body}</div>
       </div>
     </div>
   );
 }
 
 export default Main;
+
+//autofocus is used to made the input field auto get focus -- IT IS BOOLEAN ATTRIBUTES
