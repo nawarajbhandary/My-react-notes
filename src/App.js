@@ -23,6 +23,17 @@ function App() {
   // Append that new note to the previously made new notes using setNotes([newNote, ...notes])
   // setNotes([newNotes...notes ]), update state of notes and ...notes paste the all remain note and display as append MODE
 
+  const onUpdateNote = (updatedNote) => {
+    const updatedNotesArray = notes.map((note) => {
+      if (note.id === activeNote) {
+        // if note.id and activeNote index match then return updatedNote;
+        return updatedNote;
+      }
+      return note;
+    });
+    setNotes(updatedNotesArray);
+  };
+
   const onDeleteNote = (idToDelete) => {
     setNotes(notes.filter((note) => note.id !== idToDelete));
   };
@@ -47,7 +58,7 @@ function App() {
         activeNote={activeNote}
         setActiveNote={setActiveNote}
       />
-      <Main activeNote={getActiveNote()} />
+      <Main activeNote={getActiveNote()} onUpdateNote={onUpdateNote} />
     </div>
   );
 }
